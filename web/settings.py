@@ -25,7 +25,7 @@ SECRET_KEY = '92qh5@ba=5uu16bi^_pkr%%8vj6^r50gwr&20)jxny4+bjikom'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['waterfiltration.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
