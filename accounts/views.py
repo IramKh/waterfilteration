@@ -24,7 +24,7 @@ def home(request):
 def testimonials(request):
     temp1= test.objects.all()
     
-    return render(request, 'accounts\Testimonials.html', {'abt':temp1})
+    return render(request, 'accounts/Testimonials.html', {'abt':temp1})
 
 def products(request):
 	temp= Our_Product.objects.all()
@@ -75,7 +75,7 @@ def CustomerUpdate(request, pk):
             form.save()
             return redirect('/')
     context= {'form': form}
-    return render(request, 'accounts\CustomerUpdate.html',context)
+    return render(request, 'accounts/CustomerUpdate.html',context)
 
 
 
@@ -86,7 +86,7 @@ def CustomerDelete(request, pk):
         order.delete()
         return redirect('/')
     context= {'item': order}
-    return render(request, 'accounts\CustomerDelete.html',context)
+    return render(request, 'accounts/CustomerDelete.html',context)
 
 def messages(request):
 	temp= Customer.objects.all()
@@ -95,7 +95,7 @@ def messages(request):
 
 def product_details(request, id):
     product= get_object_or_404(Our_Product,id=id)
-    return render(request,'accounts\product-details.html', {'product':product})
+    return render(request,'accounts/product-details.html', {'product':product})
 	
 	
 
@@ -176,6 +176,6 @@ def cart_clear(request):
 
 
 def cart_detail(request):
-    return render(request, 'accounts\cart_detail.html')
+    return render(request, 'accounts/cart_detail.html')
 
 
