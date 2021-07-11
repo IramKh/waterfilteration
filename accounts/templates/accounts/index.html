@@ -224,53 +224,6 @@
 								</form>
 							</section>
 
-							<table class="table table-hover">
-								<thead>
-								<tr>
-								  <th>
-								  #
-								  </th>
-								  <th>
-								  Name
-								  </th>
-								  <th>
-								  Email
-								  </th>
-								  <th>
-								  Subject
-								  </th>
-								  <th>
-								  Message
-								  </th>
-								</tr>
-								</thead>
-								<tbody>
-								{% for data in abt %}
-								  <tr>
-									<td>
-									{{forloop.counter}}
-									</td>
-									<td>
-									{{data.name}}
-									</td>
-									<td>
-									{{data.email}}
-									</td>
-									<td>
-									{{data.subject}}
-									</td>
-									<td>
-									{{data.message}}
-									</td>
-									<td>
-										<a class="btn btn-sm btn-info" href="{% url 'CustomerUpdate' data.id %}">Update</a>
-									</td>
-									<td>
-										<a class="btn btn-sm btn-danger" href="{% url 'CustomerDelete' data.id %}">Delete</a>
-									</td>
-								  </tr>
-								{% endfor %}
-
 							<section>
 								<h2>Contact Info</h2>
 
