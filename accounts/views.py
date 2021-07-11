@@ -35,7 +35,7 @@ def about(request):
 	return render (request, 'accounts/about.html',{'about':temp})
 
 def contact(request):
-	temp= Our_Contact.objects.all()
+	temp= Contact_Us.objects.all()
 	temp1= Contact_Us.objects.all()
 	if request.method=="POST":
 		fname= request.POST['name']
