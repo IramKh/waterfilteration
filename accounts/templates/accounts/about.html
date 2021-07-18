@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Filtered Bottles-About</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'accounts/bootstrap/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'accounts/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'accounts/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+		<style>
+
+
+		/*Change on the Body*/
+		body{
+			font-size: 17px;
+		 	 font-style: oblique;
+		}
+
+		</style>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<div class="inner">
+
+
+						<!-- Logo -->
+							<a href="{% url 'main'%}" class="logo">
+									<span class="fa fa-book"></span> <span class="title">Get your Water Bottles at your door step</span>
+								</a>
+
+						<!-- Nav -->
+							<nav>
+								<ul>
+									<li><a href="#menu">Menu</a></li>
+								</ul>
+							</nav>
+
+					</div>
+				</header>
+
+			<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="{% url 'main'%}">Home</a></li>
+
+						<li><a href="{% url 'products'%}">Products</a></li>
+
+						<li><a href="{% url 'checkout'%}">Checkout</a></li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">About</a>
+
+							<ul>
+								<li><a href="{% url 'about'%}" class="active">About Us</a></li>
+								<li><a href="{% url 'blog'%}">Blog</a></li>
+								<li><a href="{% url 'testimonials'%}">Testimonials</a></li>
+								<li><a href="{% url 'terms'%}">Terms</a></li>
+							</ul>
+						</li>
+
+						<li><a href="{% url 'contact'%}">Contact Us</a></li>
+						<li><a href="{% url 'cart_detail'%}">Cart</a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Oh, Hey!</h1>
+									<p> <b><font size="+2">If you’ve reached this page, you must be super curious. We’ll do our best to make it worth your time. </font></b> </p>
+
+
+
+								<div class="image main">
+									<img src="{% static 'accounts/images/about-banner.jpg' %}" class="img-fluid" alt="" />
+									<br>
+									<h1>Hi. We make Water Bottles and provide Fastest Delivery.</h1>
+
+									<p> <b><font size="+1">Why? Well, we’re a motley crew of dreamers and designers who live by a simple creed: “Do more of what you love.” </font></b> </p>
+
+									<p>And we love designing things that make life a little bit easier and a heckuva a lot more enjoyable. So we asked ourselves with so many different kinds of water bottles out there, why do 3 out of 4 people still suffer from chronic dehydration?1 We all know that when we’re dehydrated we look and feel like crap. Which means we’re living more like zombies than human beings. And, last we checked, zombies are all work and no play. We are celeberiting our silver jubilee this year in the month of October. We serve you the best quality watter bottles in the world."Health is Wealth" </p>
+								</div>
+
+							{% for data in about %}
+								<p>{{data.about_para1}}</p>
+							{% endfor %}
+						</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<section>
+							<h2>Contact Us</h2>
+							<form method="post" action="#">
+								{% csrf_token %}
+								<div class="fields">
+									<div class="field half">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+
+									<div class="field half">
+										<input type="text" name="email" id="email" placeholder="Email" />
+									</div>
+
+									<div class="field">
+										<input type="text" name="subject" id="subject" placeholder="subject" />
+									</div>
+
+									<div class="field">
+										<textarea name="message" id="message" rows="3" placeholder="Notes"></textarea>
+									</div>
+
+									<div class="field text-right">
+										<label>&nbsp;</label>
+
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+						<section>
+							<h2>Contact Info</h2>
+
+							<ul class="alt">
+								<li><span class="fa fa-envelope-o"></span> <a href="mailto:waterfilteration786@gmail.com">waterfilteration786@gmail.com</a></li>
+								<li><span class="fa fa-phone"></span> +92 310 7163600 </li>
+								<li><span class="fa fa-map-pin"></span> Near Wapda Colony Multan, ABC 10001 Pakistan</li>
+							</ul>
+
+							<h2>Follow Us</h2>
+
+							<ul class="icons">
+								<li><a href="https://twitter.com/BottleFiltered/media" target="_blank" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.facebook.com/groups/125806782969369/?ref=share" target="_blank" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="https://www.instagram.com/filteredbottles/" target="_blank" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+							</ul>
+						</section>
+
+						<ul class="copyright">
+							<li>Copyright © 2021 waterfilteration </li>
+
+						</ul>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'accounts/js/jquery.min.js' %}"></script>
+			<script src="{% static 'accounts/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+			<script src="{% static 'accounts/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'accounts/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'accounts/js/main.js' %}"></script>
+	</body>
+</html>
