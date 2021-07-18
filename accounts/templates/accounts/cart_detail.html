@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE HTML>
+{% load cart_tag %}
+<html>
+	<head>
+		<title>Filtered Bottles-Checkouts</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'accounts/bootstrap/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'accounts/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'accounts/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<div class="inner">
+
+						<!-- Logo -->
+							<a href="{% url 'index'%}" class="logo">
+									<span class="fa fa-book"></span> <span class="title">Get your Water Bottles at your door step</span>
+								</a>
+
+						<!-- Nav -->
+							<nav>
+								<ul>
+									<li><a href="#menu">Menu</a></li>
+								</ul>
+							</nav>
+
+					</div>
+				</header>
+
+			<!-- Menu -->
+				<nav id="menu">
+					<h2>Menu</h2>
+					<ul>
+						<li><a href="{% url 'index'%}" >Home</a></li>
+
+						<li><a href="{% url 'products'%}">Products</a></li>
+
+						<li><a href="{% url 'checkout'%}" class="active">Checkout</a></li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">About</a>
+
+							<ul>
+								<li><a href="{% url 'about'%}">About Us</a></li>
+								<li><a href="{% url 'blog'%}" >Blog</a></li>
+								<li><a href="{% url 'testimonials'%}">Testimonials</a></li>
+								<li><a href="{% url 'terms'%}">Terms</a></li>
+							</ul>
+						</li>
+
+						<li><a href="{% url 'contact'%}">Contact Us</a></li>
+            <li><a href="{% url 'logout'%}">Logout</a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Cart Details</h1>
+						</div>
+					</div>
+
+
+                    <br>
+                    <div class="container mb-4">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="table-responsive">
+                                  <table class="table table-striped">
+
+                                    <thead>
+
+                                          <tr>
+
+                                              <th scope="col"> </th>
+                                              <th scope="col">Product</th>
+
+                                              <th scope="col" class="text-center">Quantity</th>
+                                              <th scope="col" class="text-right">Price</th>
+                                              <th scope="col" class="text-right">Sub-Total</th>
+
+                                              <th scope="col" class="text-right"><a href="{% url 'cart_clear'  %}">Clear</a>
+                                              </th>
+                                              <th> </th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                            {% for key,value in request.session.cart.items %}
+                                              <td><img src="{{value.image}}" height="200" width="250" /> </td>
+                                              <td>  {{value.name}} </td>
+                                              <td><a href="{% url 'item_increment' value.product_id %}"> <b> + </b> </a>
+                                                <p>{{value.quantity}}</p>
+                                                <a href="{% url 'item_decrement' value.product_id %}"> <b> - </b> </a> </td>
+                                              <td class="text-right">${{value.price}}</td>
+                                              <td class="text-right"> $<span id="subtotalprice">{{ value.price|multiply:value.quantity }}</span></td>
+
+                                          </tr>
+
+
+
+                                        {% endfor %}
+                                      </tbody>
+                                  </table>
+
+                                  <h3 class="text-right" ><strong>Total: $</strong> <strong id="grandtotal" >0</strong></h3>
+
+
+                              </div>
+                          </div>
+                          <div class="col mb-2">
+                              <div class="row">
+
+
+                                   <div class="col-sm-12  col-md-6">
+                                    <form method="post" class="order-form" action="{% url 'products' %}" >
+                                      {% csrf_token %}
+                                      <button class="btn btn-block btn-light">Continue Shopping</button>
+                                    </form>
+                                    </div>
+
+
+
+
+                                  <div class="col-sm-12 col-md-6 text-right">
+                                    <div class="col-sm-12 col-md-6 text-right">
+                                      <form method="post" class="order-form" action="{% url 'checkout' %}" >
+                                        {% csrf_token %}
+                                        <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                                      </form>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+                    <form hidden method="post" class="order-form" action="{% url 'store' %}" >
+                       {% csrf_token %}
+
+                        <input type="submit" value="Save Record">
+
+                    </form>
+
+			</div>
+<!-- Footer -->
+<footer id="footer">
+  <div class="inner">
+    <section>
+      <h2>Contact Us</h2>
+      <form method="post" action="#">
+        {% csrf_token %}
+        <div class="fields">
+          <div class="field half">
+            <input type="text" name="name" id="name" placeholder="Name" />
+          </div>
+
+          <div class="field half">
+            <input type="text" name="email" id="email" placeholder="Email" />
+          </div>
+
+          <div class="field">
+            <input type="text" name="subject" id="subject" placeholder="Subject" />
+          </div>
+
+          <div class="field">
+            <textarea name="message" id="message" rows="3" placeholder="Notes"></textarea>
+          </div>
+
+          <div class="field text-right">
+            <label>&nbsp;</label>
+
+            <ul class="actions">
+              <li><input type="submit" value="Send Message" class="primary" /></li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </section>
+
+
+
+    <section>
+      <h2>Contact Info</h2>
+
+      <ul class="alt">
+        <li><span class="fa fa-envelope-o"></span> <a href="mailto:waterfilteration786@gmail.com">waterfilteration786@gmail.com</a></li>
+        <li><span class="fa fa-phone"></span> +92 310 7163600 </li>
+        <li><span class="fa fa-map-pin"></span> Near Wapda Colony Multan, ABC 10001 Pakistan</li>
+      </ul>
+
+      <h2>Follow Us</h2>
+
+      <ul class="icons">
+        <li><a href="https://twitter.com/BottleFiltered/media" target="_blank" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://www.facebook.com/groups/125806782969369/?ref=share" target="_blank" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="https://www.instagram.com/filteredbottles/" target="_blank" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+      </ul>
+    </section>
+
+    <ul class="copyright">
+      <li>Copyright © 2020 waterfilteration </li>
+    </ul>
+  </div>
+</footer>
+
+</div>
+		<!-- Scripts -->
+			<script src="{% static 'accounts/js/jquery.min.js' %}"></script>
+			<script src="{% static 'accounts/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+			<script src="{% static 'accounts/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'accounts/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'accounts/js/main.js' %}"></script>
+
+
+      <script>
+        let grandtotal = document.getElementById("grandtotal");
+
+        let tags = document.querySelectorAll("tr");
+
+        let tagsarray;
+
+        tagsarray = [ ...tags ];
+
+        tagsarray.shift();
+
+        tagsarray.map(tag => {
+             let subtotalprice = tag.querySelector("#subtotalprice");
+
+          grandtotal.innerText = Number(grandtotal.innerText) + Number(subtotalprice.innerText)
+
+        })
+
+      </script>
+	</body>
+</html>
