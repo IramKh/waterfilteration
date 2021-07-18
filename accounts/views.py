@@ -125,7 +125,7 @@ def register(request):
                 
                 return redirect('CustomerData')
         context = {'form':form}
-        return render(request, 'accounts\Register.html', context)
+        return render(request, 'accounts/Register.html', context)
 
 
 def CustomerData(request):
@@ -139,7 +139,7 @@ def CustomerData(request):
         ins=Customer(Customer_first_name=fname,Customer_Email=email, Customer_Last_Name=lname, Customer_Address= Address,Customer_Contact_Number=number)
         ins.save()
         return redirect('Login')
-    return render(request, 'accounts\CustomerData.html')
+    return render(request, 'accounts/CustomerData.html')
 
 
 
@@ -163,7 +163,7 @@ def Login(request):
             else:
                 messages.info(request, 'Username OR password is incorrect')
         context = {}
-        return render(request, 'accounts\Login.html', context)
+        return render(request, 'accounts/Login.html', context)
 
 def logoutUser(request):
 	logout(request)
@@ -177,7 +177,7 @@ def logoutUser(request):
 
 
 def store(request):
-    template = render_to_string('accounts\email_template.html', {'name': request.user.username})
+    template = render_to_string('accounts/email_template.html', {'name': request.user.username})
     email = EmailMessage(
         'Thanks for Purchasing',
         template,
@@ -234,7 +234,7 @@ def item_decrement(request, id):
 
 def profile_user(request):
     abt= Customer.objects.all()
-    return render(request, 'accounts\profile_user.html',{'abt': abt})
+    return render(request, 'accounts/profile_user.html',{'abt': abt})
 
 
 
