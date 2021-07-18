@@ -38,5 +38,7 @@ urlpatterns = [
     path('CustomerData/', views.CustomerData, name='CustomerData'),
     path('Login/', views.Login, name=("Login")),
     path('logout/', views.logoutUser, name="logout"),
+    path('pdf_view/', views.ViewPDF.as_view(), name="pdf_view"),
+    path('pdf_download/', views.DownloadPDF.as_view(), name="pdf_download"),
 
 ]
